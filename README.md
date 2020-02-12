@@ -1,9 +1,9 @@
 # Biconomy OPEN API
 
 
- \-  [Getting Started](#Getting-Started)
+ \-  [**Getting Started**](#Getting-Started)
 
- \- [**Creat API Key**](#Apply-api-key)
+ \- [**Apply API Key**](#Apply-api-key)
 
  \- [**Interface Call Mode Description**](#Interface-call-mode-description)
 
