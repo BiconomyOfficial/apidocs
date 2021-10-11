@@ -244,7 +244,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/depth?symbol=BTC_USDT&size=1
+GET https://www.biconomy.com/api/v1/depth?symbol=BTC_USDT
 
 
 
