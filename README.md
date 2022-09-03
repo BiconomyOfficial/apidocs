@@ -55,17 +55,17 @@
 
 \- [**WebSocket Market Streams**](#WebSocket-Market-Streams)
 
- \- [**Depth Stream**](#Depth Stream)
+ \- [**Depth Stream**](#Depth-Stream)
 
- \- [**Kline Stream**](#Kline Stream)
+ \- [**Kline Stream**](#Kline-Stream)
 
- \- [**Deal Stream**](#Deal Stream)
+ \- [**Deal Stream**](#Deal-Stream)
 
- \- [**Last Price Stream**](#Last Price Stream)
+ \- [**Last Price Stream**](#Last-Price-Stream)
 
- \- [**24hour Market State Stream**](#24hour Market State Stream)
+ \- [**24hour Market State Stream**](#24hour-Market-State-Stream)
 
- \- [**Today Market State Stream**](#Today Market State Stream)
+ \- [**Today Market State Stream**](#Today-Market-State-Stream)
 
 
 
