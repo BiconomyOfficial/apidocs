@@ -65,7 +65,7 @@ In a signuped account of **[biconomy] (https://www.biconomy.com)**, user can cre
 
 
 
-**Please do NOT disclose the API Key and Secret Key to protect your assets. It is recommended that users bind IP addresses for the API. Each key is bound to a maximum of 5 IPs, separated by commas.**
+**Please do NOT disclose the API Key and Secret Key to protect your assets. It is recommended that users bind IP addresses for the API. Each key is bound to a maximum of 4 IPs, separated by commas.**
 
 
 
@@ -595,7 +595,7 @@ para：
 
 
 Parameter string:
-amount=33.33&api_key=apiKey&market=BTC_USDT&price=50&side=1
+amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1
 
 
 Note: The secretKey must be generated to generate the MD5 signature. Add the secret_key to the generated string to generate the final string.
@@ -609,6 +609,10 @@ Final signature string
 MD5 signature：
 
 Use 32bit MD5 encrypted string, the generated encrypted string must be capitalized
+Then use the generated encrypted string as the value of sign parameter
+
+Final HTTP request parameter example:
+amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1&sign=MD5SignatureString
 ```
 
 
@@ -620,7 +624,7 @@ Use 32bit MD5 encrypted string, the generated encrypted string must be capitaliz
 
 POST /api/v1/private/user 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 
@@ -750,7 +754,7 @@ withdraw_status: Withdrawal status 0 means no withdrawal, 1 means withdrawal
 POST /api/v1/private/trade/limit  
 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 
@@ -876,7 +880,7 @@ user: userid
 POST /api/v1/private/trade/market market trading
 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 
@@ -893,7 +897,7 @@ Frequency limit: 5 times / s
 
 
 
-### 示例
+### example
 
 
 
@@ -988,7 +992,7 @@ source:source
 
 taker_fee: taker fee
 
-type: trading type，1为limit，2为market
+type: trading type，1:limit，2:market
 
 user: userid
 
@@ -1002,18 +1006,17 @@ user: userid
 
 POST /api/v1/private/trade/cancel 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 
 ### para
 
-| para    | desc  |
 
-| -------- | ---- |
 
+| para    | desc        |
+| -------- | ---------- |
 | market  | BTC_USDT |
-
 | order_id | order id |
 
 
@@ -1131,7 +1134,7 @@ POST /api/v1/private/trade/cancel_batch
 The number of orders cancelled in batches each time does not exceed 10.
 
 
-Frequency limit: 5 times / S
+Frequency limit: 20 times / S
 
 
 
@@ -1140,14 +1143,10 @@ Frequency limit: 5 times / S
 
 
 
-| para     | desc   |
-
-| ---------- | ------- |
-
+| para     | desc        |
+| ---------- | --------- |
 | order_json | order id  |
-
 | sign    | sign   |
-
 | api_key  | api_key |
 
 
@@ -1234,14 +1233,15 @@ result: true:successful，false:fail)
 POST /api/v1/private/order/deals 
 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 ### para
 
 
-| para   | desc  |
-| -------- | ---- |
+
+| para   | desc     |
+| -------- | ------ |
 | order_id | order id |
 | offset  | 0  |
 | limit  | 1 ~ 100 |
@@ -1344,10 +1344,11 @@ user: user id
 
 POST /api/v1/private/order/pending  
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 ### para
+
 
 
 | para   | desc  |
@@ -1476,10 +1477,11 @@ user: user id
 
 POST /api/v1/private/order/pending/detail  
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 ### parme
+
 
 
 | para    | desc  |
@@ -1595,7 +1597,7 @@ user: user id
 
 POST /api/v1/private/order/finished 
 
-Frequency limit: 5 times / s
+Frequency limit: 500 times / s
 
 
 ### para
@@ -1610,6 +1612,8 @@ Frequency limit: 5 times / s
 | offset   | 0          |
 | limit   | 1 ~ 100          |
 | side    | 1:ASK 2:BID |
+
+
 
 ### example
 
@@ -1760,7 +1764,7 @@ user: user id
 POST /api/v1/private/order/finished/detail 
 
 
-Frequency limit: 5 times / s
+Frequency limit: 20 times / s
 
 
 
