@@ -105,9 +105,9 @@ Provide market query, balance query, currency transaction, order management func
 
 ### Access URL
 
-\- Main URL: [https://market.biconomy.vip](https://market.biconomy.vip) 
+\- Main URL: [https://api.biconomy.vip](https://api.biconomy.vip) 
 
-\- Backup URL: [https://www.biconomy.com](https://www.biconomy.com) , when the Main URL is not avaliable, try to use the Backup URL.
+\- Backup URL: [https://api.biconomy.com](https://api.biconomy.com) , when the Main URL is not avaliable, try to use the Backup URL.
 
 ### Request interaction
 
@@ -147,7 +147,7 @@ All requests are based on the Https protocol, and the content-type in the reques
 ### Attention
 
 \-All interface requests (public and private interfaces) must add the X-SITE-ID field in the header of the Request request. The value of this field is "127". This field is not required for signature verification.
-\-If security requires the use of SHA256 and the request URL contains "/private/", please read README_v2.md
+\-If security requires the use of SHA256 and the request URL contains "/private/", please use api/v2
 
 ## Market API public interface
 
@@ -164,7 +164,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/tickers
+GET https://api.biconomy.com/api/v1/tickers
 
 
 
@@ -264,7 +264,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/depth?symbol=BTC_USDT
+GET https://api.biconomy.com/api/v1/depth?symbol=BTC_USDT
 
 
 
@@ -328,7 +328,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/trades?symbol=BTC_USDT&size=1
+GET https://api.biconomy.com/api/v1/trades?symbol=BTC_USDT&size=1
 
 
 
@@ -408,7 +408,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/kline?symbol=BTC_USDT&type=1min&size=10
+GET https://api.biconomy.com/api/v1/kline?symbol=BTC_USDT&type=1min&size=10
 
 
 
@@ -509,7 +509,7 @@ Frequency limit: 10 times / s
 ```
 Request:
 
-GET https://www.biconomy.com/api/v1/exchangeInfo
+GET https://api.biconomy.com/api/v1/exchangeInfo
 
 
 
@@ -618,7 +618,7 @@ Parameter string:
 amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1
 
 
-Note: The secretKey must be generated to generate the MD5 signature. Add the secret_key to the generated string to generate the final string.
+Note: The secretKey must be generated to generate the SHA256 signature. Add the secret_key to the generated string to generate the final string.
 
 
 Final signature string
@@ -626,13 +626,13 @@ Final signature string
 
 
 
-MD5 signature：
+SHA256 signature：
 
-Use 32bit MD5 encrypted string, the generated encrypted string must be capitalized
+Use HMAC SHA256 encrypted string, the generated encrypted string must be capitalized
 Then use the generated encrypted string as the value of sign parameter
 
 Final HTTP request parameter example:
-amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1&sign=MD5SignatureString
+amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1&sign=SHA256SignatureString
 ```
 
 
@@ -642,7 +642,7 @@ amount=0.02&api_key=apiKey&market=BTC_USDT&price=50&side=1&sign=MD5SignatureStri
 ## Get User Assets
 
 
-POST /api/v1/private/user 
+POST /api/v2/private/user 
 
 Frequency limit: 20 times / s
 
@@ -655,7 +655,7 @@ Frequency limit: 20 times / s
 
 Request:
 
-POST https://www.biconomy.com/api/v1/private/user
+POST https://api.biconomy.com/api/v2/private/user
 
 
 
@@ -771,7 +771,7 @@ withdraw_status: Withdrawal status 0 means no withdrawal, 1 means withdrawal
 ## Limit Trading
 
 
-POST /api/v1/private/trade/limit  
+POST /api/v2/private/trade/limit  
 
 
 Frequency limit: 20 times / s
@@ -796,7 +796,7 @@ Frequency limit: 20 times / s
 
 Request:
 
-POST https://www.biconomy.com/api/v1/private/trade/limit
+POST https://api.biconomy.com/api/v2/private/trade/limit
 
 
 
@@ -897,7 +897,7 @@ user: userid
 
 
 
-POST /api/v1/private/trade/market market trading
+POST /api/v2/private/trade/market market trading
 
 
 Frequency limit: 20 times / s
@@ -925,7 +925,7 @@ Frequency limit: 20 times / s
 
 Request: 
 
-POST https://www.biconomy.com/api/v1/private/trade/market
+POST https://api.biconomy.com/api/v2/private/trade/market
 
 
 
@@ -1024,7 +1024,7 @@ user: userid
 
 
 
-POST /api/v1/private/trade/cancel 
+POST /api/v2/private/trade/cancel 
 
 Frequency limit: 20 times / s
 
@@ -1049,7 +1049,7 @@ Frequency limit: 20 times / s
 
 Request: 
 
-POST https://www.biconomy.com/api/v1/private/trade/cancel
+POST https://api.biconomy.com/api/v2/private/trade/cancel
 
 
 
@@ -1150,7 +1150,7 @@ user: userid
 
 
 
-POST /api/v1/private/trade/cancel_batch 
+POST /api/v2/private/trade/cancel_batch 
 The number of orders cancelled in batches each time does not exceed 10.
 
 
@@ -1179,7 +1179,7 @@ Frequency limit: 20 times / S
 
 Request:
 
-POST https://www.biconomy.com/api/v1/private/trade/cancel_batch
+POST https://api.biconomy.com/api/v2/private/trade/cancel_batch
 
 
 
@@ -1250,7 +1250,7 @@ result: true:successful，false:fail)
 
 
 
-POST /api/v1/private/order/deals 
+POST /api/v2/private/order/deals 
 
 
 Frequency limit: 20 times / s
@@ -1274,7 +1274,7 @@ Frequency limit: 20 times / s
 
 # Request 
 
-POST https://www.biconomy.com/api/v1/private/order/deals
+POST https://api.biconomy.com/api/v2/private/order/deals
 
 # Response
 
@@ -1362,7 +1362,7 @@ user: user id
 ## Query Unfilled Orders
 
 
-POST /api/v1/private/order/pending  
+POST /api/v2/private/order/pending  
 
 Frequency limit: 20 times / s
 
@@ -1385,7 +1385,7 @@ Frequency limit: 20 times / s
 
 # Request 
 
-POST https://www.biconomy.com/api/v1/private/order/pending
+POST https://api.biconomy.com/api/v2/private/order/pending
 
 # Response
 
@@ -1495,7 +1495,7 @@ user: user id
 
 
 
-POST /api/v1/private/order/pending/detail  
+POST /api/v2/private/order/pending/detail  
 
 Frequency limit: 20 times / s
 
@@ -1517,7 +1517,7 @@ Frequency limit: 20 times / s
 
 Request:
 
-POST https://www.biconomy.com/api/v1/private/order/pending/detail
+POST https://api.biconomy.com/api/v2/private/order/pending/detail
 
 
 
@@ -1615,7 +1615,7 @@ user: user id
 ##  Querying the Completed Order
 
 
-POST /api/v1/private/order/finished 
+POST /api/v/private/order/finished 
 
 Frequency limit: 500 times / s
 
@@ -1641,7 +1641,7 @@ Frequency limit: 500 times / s
 
 Request: 
 
-POST https://www.biconomy.com/api/v1/private/order/finished
+POST https://api.biconomy.com/api/v2/private/order/finished
 
 
 Response:
@@ -1781,7 +1781,7 @@ user: user id
 
 
 
-POST /api/v1/private/order/finished/detail 
+POST /api/v2/private/order/finished/detail 
 
 
 Frequency limit: 20 times / s
@@ -1807,7 +1807,7 @@ Frequency limit: 20 times / s
 
 Request:
 
-POST https://www.biconomy.com/api/v1/private/order/finished/detail
+POST https://api.biconomy.com/api/v2/private/order/finished/detail
 
 
 
