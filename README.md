@@ -1165,7 +1165,7 @@ Frequency limit: 20 times / S
 
 | para     | desc        |
 | ---------- | --------- |
-| order_json | order id  |
+| orders_json | [{"market":"XX_USDT","order_id":1},{"market":"XX_USDT","order_id":2}]  |
 | sign    | sign   |
 | api_key  | api_key |
 
