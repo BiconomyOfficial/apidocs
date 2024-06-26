@@ -1615,7 +1615,7 @@ user: user id
 ##  Querying the Completed Order
 
 
-POST /api/v/private/order/finished 
+POST /api/v2/private/order/finished 
 
 Frequency limit: 500 times / s
 
@@ -1777,7 +1777,7 @@ user: user id
 
 ------
 
-## Query Details Of An Unfilled Order
+## Query Details Of An Finished Order
 
 
 
@@ -2426,3 +2426,64 @@ Example Event:
 ​	{"method": "today.update", "params": ["BTC_USDT", {"low": "23727.7", "deal": "614923080.4154", "open": "23901.05", "last": "23769.64", "high": "24411.64", "volume": "25664.43"}], "id": null}
 ```
 
+
+#### Subscribe User Asset/Order Stream
+```
+Authentication Test:
+#!/bin/bash
+echo -n "api_key=key&secret_key=secret&timestamp=1719028320000" | openssl dgst -sha256 -hmac "secret"
+```
+
+```
+Before subscribe channel, you need to verify sign. Send sign message to server with websocket.If websocket closed and reopen, need to verify sign again.
+
+Example:
+{"method":"server.sign","params":["api_key","sign",1719028320000],"id":1}
+```
+
+
+```
+Sign Parameters:
+
+​	method: server.sign
+
+​	params: There are three parameters in the array, the first is api_key, the second is sign, and the third is the milliseconds of timestamp
+
+ id: a number to identify the request, The serial number of the command, add one after sending each command, and the reply message will contain this ID to distinguish
+
+```
+
+
+```
+Subscribe asset channel:
+Example:
+{"method":"asset.subscribe","params":["BTC","ETH"],"id":1}
+```
+
+```
+Asset Parameters:
+
+​	method: asset.subscribe
+
+​	params: Subscribe some assets in the array, such as BTC, ETH
+
+ id: a number to identify the request, The serial number of the command, add one after sending each command, and the reply message will contain this ID to distinguish
+
+```
+
+
+```
+Subscribe order channel:
+Example:
+{"method":"order.subscribe","params":[],"id":1}
+```
+```
+Order Parameters:
+
+​	method: order.subscribe
+
+​	params: empty array
+
+ id: a number to identify the request, The serial number of the command, add one after sending each command, and the reply message will contain this ID to distinguish
+
+```
