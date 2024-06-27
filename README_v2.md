@@ -2433,6 +2433,23 @@ Authentication Test:
 #!/bin/bash
 echo -n "api_key=key&secret_key=secret&timestamp=1719028320000" | openssl dgst -sha256 -hmac "secret"
 ```
+Python code:
+```
+# -*- coding: utf-8 -*-
+import hmac
+import hashlib
+
+api_key = "key"
+secret_key = "secret"
+timestamp = "1719028320000"
+
+message = f"api_key={api_key}&secret_key={secret_key}&timestamp={timestamp}"
+hmac_key = secret_key.encode()
+message = message.encode()
+
+signature = hmac.new(hmac_key, message, hashlib.sha256).hexdigest()
+print(signature)
+```
 
 ```
 Before subscribe channel, you need to verify sign. Send sign message to server with websocket.If websocket closed and reopen, need to verify sign again.
@@ -2485,5 +2502,39 @@ Order Parameters:
 ​	params: empty array
 
  id: a number to identify the request, The serial number of the command, add one after sending each command, and the reply message will contain this ID to distinguish
+
+```
+```
+Order Message Example:
+[
+  3,
+  {
+    "id": 123,
+    "market": "XX_USDT",
+    "source": "api,127",
+    "type": 1,
+    "side": 1,
+    "user": 12345,
+    "ctime": 1619419244.949748,
+    "mtime": 1619419244.949748,
+    "price": "200.27",
+    "amount": "2.02",
+    "taker_fee": "0",
+    "maker_fee": "0",
+    "left": "2.02",
+    "deal_stock": "0",
+    "deal_money": "0",
+    "deal_fee": "0"
+  }
+]
+
+The first item in the array is a state code enum:
+enum {
+    ORDER_EVENT_PUT     = 1,
+    ORDER_EVENT_UPDATE  = 2,
+    ORDER_EVENT_FINISH  = 3,
+};
+
+The second item in the array is the order data detail.
 
 ```
